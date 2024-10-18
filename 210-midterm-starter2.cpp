@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ctime>
+
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -204,7 +206,19 @@ public:
 };
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    time_t now = time(nullptr);
+
+
+    cout << now << endl;
+
+    string customerNames[20]{"Bob",  "Frank", "Malissa", "Christine", "mailey", 
+                            "Oliver","Isabella","Elijah", "Sophia", "Liam", 
+                            "Mia", "Ethan", "Amelia", "Noah", "Charlotte", 
+                            "James", "Ava", "William", "Harper", "Marge"};
+
+    cout << customerNames[19] << endl;
+
+    DoublyLinkedList customers;
 
 
     
