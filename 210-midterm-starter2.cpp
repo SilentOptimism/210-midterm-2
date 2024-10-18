@@ -140,11 +140,12 @@ public:
         }
     }
     
-    void pop_front() {
+    string pop_front() {
+        string name;
 
         if (!head) {
             cout << "List is empty." << endl;
-            return;
+            return "";
         }
 
         Node * temp = head;
@@ -155,13 +156,17 @@ public:
         }
         else
             head = tail = nullptr;
+        
+        name = temp->customer;
         delete temp;
+        return name;
     }
 
-    void pop_back() {
+    string pop_back() {
+        string name;
         if (!tail) {
             cout << "List is empty." << endl;
-            return;
+            return "";
         }
         Node * temp = tail;
 
@@ -171,7 +176,9 @@ public:
         }
         else
             head = tail = nullptr;
+        name = temp->customer;
         delete temp;
+        return name;
     }
 
     ~DoublyLinkedList() {
@@ -209,17 +216,17 @@ public:
 };
 
 int main() {
-
     ifstream fin;
     fin.open("names.txt");
+    int timeStep = 0;
 
     if(!fin){
         cout << "File failed to open" << endl;
     }
 
-/*
     DoublyLinkedList patrons;
 
+    // Opens the store and fills the list with 5 patrons
     cout << "Store opens" << endl;
     for (int i = 0; i < 5; i++){
         string customerName;
@@ -228,19 +235,35 @@ int main() {
         patrons.push_front(customerName);
         cout << customerName << " Joins the line" << endl;
     }
-    
-*/
-
-
 
     srand(time(nullptr));
     time_t startTime = time(nullptr);
 
-    while(true){
+    while(timeStep < 20){
         time_t currentTime = time(nullptr);
 
-        if(difftime(currentTime, startTime) >= 60){
+        if(difftime(currentTime, startTime) >= 1){
             startTime = currentTime;
+            timeStep++;
+            cout << "Time step #" << timeStep << endl;
+
+            int random = rand() % 100 + 1;
+            if(random <= 10){
+                cout << "\t" << patrons.pop_back() << "(at the rear) left the line" << endl;
+            }
+            else if (random <= 20){
+                cout << "\t" << patrons.pop_back() <<"(VIP) joins the front of the line" << endl;
+            }
+            else if (random <= 40){
+                cout  << "\t" << patrons.pop_front() << " is served" << endl;
+            }
+            else if (random <= 60){
+                string newCust;
+                getline(fin, newCust);
+                patrons.push_front(newCust);
+                cout  << "\t" << newCust << " joins the line" << endl;
+            }
+            
         }
 
     }
