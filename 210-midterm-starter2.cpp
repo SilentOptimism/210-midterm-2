@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <ctime>
+#include <string>
 #include <thread>
 
 using namespace std;
@@ -208,19 +209,38 @@ public:
 };
 
 int main() {
+
+    ifstream fin;
+    fin.open("names.txt");
+
+    if(!fin){
+        cout << "File failed to open" << endl;
+    }
+
+/*
+    DoublyLinkedList patrons;
+
+    cout << "Store opens" << endl;
+    for (int i = 0; i < 5; i++){
+        string customerName;
+        getline(fin, customerName);
+
+        patrons.push_front(customerName);
+        cout << customerName << " Joins the line" << endl;
+    }
+    
+*/
+
+
+
     srand(time(nullptr));
     time_t startTime = time(nullptr);
-
-
 
     while(true){
         time_t currentTime = time(nullptr);
 
         if(difftime(currentTime, startTime) >= 60){
             startTime = currentTime;
-
-
-
         }
 
     }
