@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <ctime>
 #include <thread>
@@ -9,11 +10,11 @@ const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
+        string customer;
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
+        Node(string name, Node* p = nullptr, Node* n = nullptr) {
+            customer = name; 
             prev = p;
             next = n;
         }
@@ -25,13 +26,13 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(int value, int position) {
+    void insert_after(string name, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(name);
         if (!head) {
             head = tail = newNode;
             return;
@@ -56,12 +57,12 @@ public:
         temp->next = newNode;
     }
 
-    void delete_val(int value) {
+    void delete_val(string name) {
         if (!head) return;
 
         Node* temp = head;
         
-        while (temp && temp->data != value)
+        while (temp && temp->customer != name)
             temp = temp->next;
 
         if (!temp) return; 
@@ -116,8 +117,8 @@ public:
         delete temp;
     }
 
-    void push_back(int v) {
-        Node* newNode = new Node(v);
+    void push_back(string name) {
+        Node* newNode = new Node(name);
         if (!tail)
             head = tail = newNode;
         else {
@@ -127,8 +128,8 @@ public:
         }
     }
     
-    void push_front(int v) {
-        Node* newNode = new Node(v);
+    void push_front(string name) {
+        Node* newNode = new Node(name);
         if (!head)
             head = tail = newNode;
         else {
@@ -186,7 +187,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->customer << " ";
             current = current->next;
         }
         cout << endl;
@@ -199,7 +200,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->customer << " ";
             current = current->prev;
         }
         cout << endl;
@@ -207,37 +208,19 @@ public:
 };
 
 int main() {
-    int minutesPassed = 0;
-    int tenSecondsPassed = 0;
+    srand(time(nullptr));
     time_t startTime = time(nullptr);
 
-    
-    
 
-
-
-
-    string customerNames[20]{"Bob",  "Frank", "Malissa", "Christine", "mailey", 
-                            "Oliver","Isabella","Elijah", "Sophia", "Liam", 
-                            "Mia", "Ethan", "Amelia", "Noah", "Charlotte", 
-                            "James", "Ava", "William", "Harper", "Marge"};
-
-    cout << customerNames[19] << endl;
-
-    DoublyLinkedList customers;
-    customers.push_front(0);
-    customers.push_front(1);
-    customers.push_front(2);
-    customers.push_front(3);
-    customers.push_front(4);
-    customers.push_front(5);
 
     while(true){
         time_t currentTime = time(nullptr);
 
-        if(difftime(currentTime,startTime) >= 5.0){
-            cout << currentTime - startTime << endl;
-            
+        if(difftime(currentTime, startTime) >= 60){
+            startTime = currentTime;
+
+
+
         }
 
     }
