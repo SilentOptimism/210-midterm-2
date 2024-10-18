@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <thread>
 
 using namespace std;
 
@@ -206,10 +207,15 @@ public:
 };
 
 int main() {
-    time_t now = time(nullptr);
+    int minutesPassed = 0;
+    int tenSecondsPassed = 0;
+    time_t startTime = time(nullptr);
+
+    
+    
 
 
-    cout << now << endl;
+
 
     string customerNames[20]{"Bob",  "Frank", "Malissa", "Christine", "mailey", 
                             "Oliver","Isabella","Elijah", "Sophia", "Liam", 
@@ -219,7 +225,22 @@ int main() {
     cout << customerNames[19] << endl;
 
     DoublyLinkedList customers;
+    customers.push_front(0);
+    customers.push_front(1);
+    customers.push_front(2);
+    customers.push_front(3);
+    customers.push_front(4);
+    customers.push_front(5);
 
+    while(true){
+        time_t currentTime = time(nullptr);
+
+        if(difftime(currentTime,startTime) >= 5.0){
+            cout << currentTime - startTime << endl;
+            
+        }
+
+    }
 
     
     return 0;
