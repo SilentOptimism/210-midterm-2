@@ -195,7 +195,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->customer << " ";
+            cout << "\t\t" << current->customer << "\n";
             current = current->next;
         }
         cout << endl;
@@ -208,7 +208,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->customer << " ";
+            cout << "\t\t" << current->customer << "\n";
             current = current->prev;
         }
         cout << endl;
@@ -242,7 +242,7 @@ int main() {
     while(timeStep < 20){
         time_t currentTime = time(nullptr);
 
-        if(difftime(currentTime, startTime) >= 1){
+        if(difftime(currentTime, startTime) >= 60){
             startTime = currentTime;
             timeStep++;
             cout << "Time step #" << timeStep << endl;
@@ -257,12 +257,14 @@ int main() {
             else if (random <= 40){
                 cout  << "\t" << patrons.pop_front() << " is served" << endl;
             }
-            else if (random <= 60){
+            else if (random <= 100){
                 string newCust;
                 getline(fin, newCust);
                 patrons.push_front(newCust);
                 cout  << "\t" << newCust << " joins the line" << endl;
             }
+            cout << "\tResulting Line:" << endl;
+            patrons.print();
             
         }
 
